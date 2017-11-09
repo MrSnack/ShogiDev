@@ -4,7 +4,7 @@ import dev.shogi.figures.Figure;
 
 import javax.swing.*;
 
-public abstract class Field extends JButton {
+public class Field extends JButton {
 
     private int x;
     private int y;
