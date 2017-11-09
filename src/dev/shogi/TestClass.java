@@ -6,7 +6,7 @@ package dev.shogi;
 public class TestClass{
     //Hier soll mal Code stehen
     public static void main(String[] args) {
-
+        System.out.println("Patrick war hier");
         System.out.println("Hello world!");
         System.out.println("Jannik war hier.");
     }
