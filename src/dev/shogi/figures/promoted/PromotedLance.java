@@ -1,4 +1,6 @@
 package dev.shogi.figures.promoted;
 
-public class PromotedLance {
+import dev.shogi.figures.basic.GoldenGeneral;
+
+public class PromotedLance extends GoldenGeneral {
 }

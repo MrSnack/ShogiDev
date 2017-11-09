@@ -1,4 +1,6 @@
 package dev.shogi.figures.promoted;
 
-public class Horse {
+import dev.shogi.figures.basic.Bishop;
+
+public class Horse extends Bishop {
 }

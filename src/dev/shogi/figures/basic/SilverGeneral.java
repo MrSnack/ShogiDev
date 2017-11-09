@@ -1,4 +1,6 @@
 package dev.shogi.figures.basic;
 
-public class SilverGeneral {
+import dev.shogi.figures.Figure;
+
+public class SilverGeneral extends Figure {
 }

@@ -1,4 +1,6 @@
 package dev.shogi.figures.promoted;
 
-public class PromotedPawn {
+import dev.shogi.figures.basic.GoldenGeneral;
+
+public class PromotedPawn extends GoldenGeneral {
 }

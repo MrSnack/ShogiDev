@@ -1,4 +1,6 @@
 package dev.shogi.figures.basic;
 
-public class King {
+import dev.shogi.figures.Figure;
+
+public class King extends Figure {
 }

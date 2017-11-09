@@ -1,4 +1,6 @@
 package dev.shogi.figures.basic;
 
-public class Tower {
+import dev.shogi.figures.Figure;
+
+public class Tower extends Figure {
 }

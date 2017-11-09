@@ -1,4 +1,6 @@
 package dev.shogi.figures.basic;
 
-public class Bishop {
+import dev.shogi.figures.Figure;
+
+public class Bishop extends Figure{
 }

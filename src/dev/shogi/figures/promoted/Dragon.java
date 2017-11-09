@@ -1,4 +1,6 @@
 package dev.shogi.figures.promoted;
 
-public class Dragon {
+import dev.shogi.figures.basic.Tower;
+
+public class Dragon extends Tower{
 }

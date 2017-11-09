@@ -1,4 +1,6 @@
 package dev.shogi.figures.basic;
 
-public class Lance {
+import dev.shogi.figures.Figure;
+
+public class Lance extends Figure {
 }
