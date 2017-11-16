@@ -14,6 +14,15 @@ public class Field extends JButton {
     private String name;
     private Figure figure = null;
 
+    public Field() {
+    }
+
+    public Field(int x, int y, String name) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
+    }
+
     public int getX() {
         return x;
     }
