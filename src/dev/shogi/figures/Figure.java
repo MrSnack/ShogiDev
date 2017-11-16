@@ -11,9 +11,12 @@ public abstract class Figure {
      */
     private String drawpattern;
 
-    public Figure(String name, String drawpattern) {
+    private boolean isWhite;
+
+    public Figure(String name, String drawpattern, boolean isWhite) {
         this.name = name;
         this.drawpattern = drawpattern;
+        this.isWhite = isWhite;
     }
 
     public String getName() {
