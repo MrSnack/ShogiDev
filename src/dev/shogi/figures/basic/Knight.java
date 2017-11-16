@@ -4,6 +4,6 @@ import dev.shogi.figures.Figure;
 
 public class Knight extends Figure {
     public Knight(boolean isWhite) {
-        super("Knight", "", isWhite, "N");
+        super("Knight", "", isWhite, "N", "");
     }
 }

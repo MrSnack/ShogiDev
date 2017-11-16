@@ -14,11 +14,14 @@ public abstract class Figure {
     private boolean isWhite;
     private String symbol;
 
-    public Figure(String name, String drawpattern, boolean isWhite, String symbol) {
+    private String imageURL;
+
+    public Figure(String name, String drawpattern, boolean isWhite, String symbol, String imageURL) {
         this.name = name;
         this.drawpattern = drawpattern;
         this.isWhite = isWhite;
         this.symbol = symbol;
+        this.imageURL = imageURL;
     }
 
     public String getName() {
@@ -27,5 +30,13 @@ public abstract class Figure {
 
     public String getDrawpattern() {
         return drawpattern;
+    }
+
+    public boolean isWhite(){
+        return isWhite;
+    }
+
+    public String getSymbol(){
+        return symbol;
     }
 }
