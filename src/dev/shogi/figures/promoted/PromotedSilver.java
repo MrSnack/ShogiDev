@@ -4,6 +4,6 @@ import dev.shogi.figures.basic.GoldenGeneral;
 
 public class PromotedSilver extends GoldenGeneral {
     public PromotedSilver(boolean isWhite) {
-        super("PromotedSilver", "11101011", isWhite);
+        super("PromotedSilver", "11101011", isWhite, "+S");
     }
 }

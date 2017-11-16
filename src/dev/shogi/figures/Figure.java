@@ -12,11 +12,13 @@ public abstract class Figure {
     private String drawpattern;
 
     private boolean isWhite;
+    private String symbol;
 
-    public Figure(String name, String drawpattern, boolean isWhite) {
+    public Figure(String name, String drawpattern, boolean isWhite, String symbol) {
         this.name = name;
         this.drawpattern = drawpattern;
         this.isWhite = isWhite;
+        this.symbol = symbol;
     }
 
     public String getName() {
