@@ -6,8 +6,8 @@ import dev.shogi.figures.basic.Rook;
 public class Dragon extends Rook {
     //Promoted Rook (Dragon)
 
-    public Dragon(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public Dragon(Field field, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, isWhite, isEuropeanIcon);
     }
 
     /*

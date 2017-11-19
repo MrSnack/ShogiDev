@@ -5,8 +5,8 @@ import dev.shogi.figures.Figure;
 
 public class Knight extends Figure {
 
-    public Knight(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public Knight(Field field, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, isWhite, isEuropeanIcon);
     }
 
     /*

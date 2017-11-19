@@ -5,8 +5,8 @@ import dev.shogi.figures.Figure;
 
 public class GoldenGeneral extends Figure {
 
-    public GoldenGeneral(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public GoldenGeneral(Field field, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, isWhite, isEuropeanIcon);
     }
 
     /*

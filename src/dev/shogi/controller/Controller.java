@@ -7,7 +7,8 @@ public class Controller {
     private Board board;
 
     public Controller (){
-    //    board = new Board();
+        board = new Board();
+        board.buildBoard();
     }
 
 

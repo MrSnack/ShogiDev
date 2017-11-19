@@ -5,8 +5,8 @@ import dev.shogi.figures.Figure;
 
 public class Pawn extends Figure {
 
-    public Pawn(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public Pawn(Field field, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, isWhite, isEuropeanIcon);
     }
 
     /*

@@ -5,8 +5,8 @@ import dev.shogi.figures.Figure;
 
 public class Rook extends Figure {
 
-    public Rook(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public Rook(Field field, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, isWhite, isEuropeanIcon);
     }
 
     /*

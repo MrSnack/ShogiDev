@@ -5,8 +5,8 @@ import dev.shogi.figures.Figure;
 
 public class SilverGeneral extends Figure {
 
-    public SilverGeneral(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public SilverGeneral(Field field, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, isWhite, isEuropeanIcon);
     }
 
     /*

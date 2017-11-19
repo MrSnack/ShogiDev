@@ -1,14 +1,12 @@
 package dev.shogi.starter;
 
-import dev.shogi.board.Board;
+import dev.shogi.controller.Controller;
 
 public class Shogi {
 
     public static void main(String[] args) {
-        System.out.println("Hallo");
-        System.out.println("Welt");
-        Board board = new Board();
-        board.buildBoard();
+        System.out.println("Startet!");
+        new Controller();
     }
 
 }

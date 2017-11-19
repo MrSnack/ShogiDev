@@ -5,8 +5,8 @@ import dev.shogi.figures.Figure;
 
 public class King extends Figure {
 
-    public King(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public King(Field field, boolean isWhite, boolean isEuropean) {
+        super(field, isWhite, isEuropean);
     }
 
     /*public King(boolean isWhite) {
@@ -30,6 +30,19 @@ public class King extends Figure {
             return "\u738B";
         } else {
             return "\u7389";
+        }
+    }
+
+    @Override
+    public String getImageURL() {
+        if (this.isWhite()) {
+            return super.getImageURL();
+        } else {
+            if (this.isEuropeanIcon()) {
+                return "resources/europeanIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
+            } else {
+                return "resources/japaneseIcons/challening" + getClass().getSimpleName().toLowerCase() + ".png";
+            }
         }
     }
 }

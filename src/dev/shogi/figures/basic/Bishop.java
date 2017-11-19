@@ -3,10 +3,10 @@ package dev.shogi.figures.basic;
 import dev.shogi.board.Field;
 import dev.shogi.figures.Figure;
 
-public class Bishop extends Figure{
+public class Bishop extends Figure {
 
-    public Bishop(Field field, boolean isWhite) {
-        super(field, isWhite);
+    public Bishop(Field field, boolean isWhite, boolean isEuropean) {
+        super(field, isWhite, isEuropean);
     }
 
     /*public Bishop(String name, String drawpattern, boolean isWhite, String symbol, String imageURL){

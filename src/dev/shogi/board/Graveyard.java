@@ -4,26 +4,23 @@ import dev.shogi.figures.Figure;
 
 import java.util.ArrayList;
 
-public class Graveyard {
+public class Graveyard extends ArrayList<Figure> {
 
-    private ArrayList<Figure> figureList;
     private boolean isWhite;
 
     public Graveyard(boolean isWhite){
-        figureList = new ArrayList<>();
         this.isWhite = isWhite;
     }
 
-    public void add(Figure figure){
-        figureList.add(figure);
+    public boolean addFigure(Figure figure){
+        return this.add(figure);
     }
 
-    public void remove(Figure figure){
-        figureList.remove(figure);
-
+    public boolean removeFigure(Figure figure) {
+        return super.remove(figure);
     }
 
     public ArrayList<Figure> getFigureList() {
-        return figureList;
+        return this;
     }
 }
