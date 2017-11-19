@@ -1,7 +1,10 @@
 package dev.shogi.figures;
 
+import dev.shogi.board.Field;
+
 public abstract class Figure {
 
+    private Field field;
     private String name;
     /**
      * Drawpattern besteht aus 9 Zeichen.
@@ -10,18 +13,15 @@ public abstract class Figure {
      * 2 = Zug für unendlich Felder
      */
     private String drawpattern;
-
     private boolean isWhite;
-    private String symbol;
 
-    private String imageURL;
-
-    public Figure(String name, String drawpattern, boolean isWhite, String symbol, String imageURL) {
-        this.name = name;
-        this.drawpattern = drawpattern;
+    public Figure(Field field, boolean isWhite) {
+        this.field = field;
         this.isWhite = isWhite;
-        this.symbol = symbol;
-        this.imageURL = imageURL;
+    }
+
+    public void setField(Field field) {
+        this.field = field;
     }
 
     public String getName() {
@@ -36,7 +36,9 @@ public abstract class Figure {
         return isWhite;
     }
 
-    public String getSymbol(){
-        return symbol;
-    }
+    public Field getField() { return field; }
+
+    abstract public boolean isOK(Field[][] fieldArray, Field field);
+
+    abstract public String getSymbol();
 }

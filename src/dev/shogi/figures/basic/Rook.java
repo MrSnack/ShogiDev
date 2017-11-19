@@ -3,15 +3,19 @@ package dev.shogi.figures.basic;
 import dev.shogi.board.Field;
 import dev.shogi.figures.Figure;
 
-public class Knight extends Figure {
+public class Rook extends Figure {
 
-    public Knight(Field field, boolean isWhite) {
+    public Rook(Field field, boolean isWhite) {
         super(field, isWhite);
     }
 
     /*
-    public Knight(boolean isWhite) {
-        super("Knight", "", isWhite, "N", "");
+    public Rook(String name, String drawpattern, boolean isWhite, String symbol, String imageURL){
+        super(name, drawpattern, isWhite, symbol, imageURL);
+    }
+
+    public Rook(boolean isWhite) {
+        super("Rook", "20202020", isWhite, "R", "");
     }
     */
 
@@ -23,8 +27,8 @@ public class Knight extends Figure {
 
     @Override
     public String getSymbol() {
-        //Unicode des Springers (jap. Symbol)
+        //Unicode des Turms (jap. Symbol)
         //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u6842";
+        return "\u98DB";
     }
 }
