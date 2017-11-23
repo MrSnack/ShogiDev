@@ -17,7 +17,8 @@ public class Field extends JButton {
      */
     private String name;
     private Figure figure = null;
-
+    private int fieldX = -1;
+    private int fieldY= -1;
     public Field() {
     }
 
@@ -41,6 +42,22 @@ public class Field extends JButton {
 
     public Figure getFigure() {
         return figure;
+    }
+
+    public int getFieldX() {
+        return fieldX;
+    }
+
+    public void setFieldX(int fieldX) {
+        this.fieldX = fieldX;
+    }
+
+    public int getFieldY() {
+        return fieldY;
+    }
+
+    public void setFieldY(int fieldY) {
+        this.fieldY = fieldY;
     }
 
     void setFigure(Figure figure, boolean init) {

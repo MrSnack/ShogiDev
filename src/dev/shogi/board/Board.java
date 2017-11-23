@@ -79,6 +79,8 @@ public class Board extends JFrame {
         for (int x = 0; x < fields.length; x++) {
             for (int y = 0; y < fields[0].length; y++) {
                 Field f = new Field(this, isWhite, Character.toString(fieldNames[x]) + Character.getNumericValue(fieldNames[y + BOARDSIZE]));
+                f.setFieldX(x);
+                f.setFieldY(y);
                 fields[x][y] = f;
                 f.addActionListener(fieldListener);
                 pnlGame.add(f);

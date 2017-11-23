@@ -64,7 +64,10 @@ public abstract class Figure {
         return this.getClass().getSimpleName();
     }
 
-    public abstract boolean isOK(Field[][] fieldArray, Field field);
+    public boolean isOK(Field[][] fieldArray, Field field) {
+        //TODO: Allgemeine Zugregel einführen
+        return true;
+    }
 
     public abstract String getSymbol();
 
