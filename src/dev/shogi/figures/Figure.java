@@ -1,6 +1,7 @@
 package dev.shogi.figures;
 
 import dev.shogi.board.Field;
+import dev.shogi.controller.Controller;
 
 public abstract class Figure {
 
@@ -45,8 +46,11 @@ public abstract class Figure {
         this.isEuropeanIcon = isEuropeanIcon;
     }
 
-    public void setField(Field field) {
+    public void setField(Field field, boolean init) {
         this.field = field;
+        if (!init) {
+            field.getBoard().saveTurnEnd(this);
+        }
     }
 
     public boolean isWhite() {

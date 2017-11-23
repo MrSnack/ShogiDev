@@ -1,5 +1,6 @@
 package dev.shogi.board;
 
+import dev.shogi.controller.Controller;
 import dev.shogi.figures.Figure;
 
 import javax.imageio.ImageIO;
@@ -32,12 +33,16 @@ public class Field extends JButton {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    public Board getBoard() {
+        return board;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public boolean isWhite() {
+        return isWhite;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Figure getFigure() {
@@ -48,7 +53,7 @@ public class Field extends JButton {
         return fieldX;
     }
 
-    public void setFieldX(int fieldX) {
+    void setFieldX(int fieldX) {
         this.fieldX = fieldX;
     }
 
@@ -56,9 +61,11 @@ public class Field extends JButton {
         return fieldY;
     }
 
-    public void setFieldY(int fieldY) {
+    void setFieldY(int fieldY) {
         this.fieldY = fieldY;
     }
+
+    public void setFigure(Figure figure) { this.setFigure(figure, false); }
 
     void setFigure(Figure figure, boolean init) {
         //init gegen Beförderung von Figuren bei der Initialisierung
@@ -66,7 +73,7 @@ public class Field extends JButton {
             figur = new Dame(this, figur.getSchwarz());
         }*/
         this.figure = figure;
-        figure.setField(this);
+        figure.setField(this, init);
         this.setForeground(figure.isWhite() ? Color.white : Color.black);
         this.setFont(new Font("Dialog", Font.BOLD, 36));
         //this.setText(figure.getSymbol());
@@ -80,6 +87,12 @@ public class Field extends JButton {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void removeFigure() {
+        this.figure = null;
+        board.saveTurnStart();
+        this.setIcon(null);
     }
 
     private BufferedImage rotate180( BufferedImage inputImage ) {

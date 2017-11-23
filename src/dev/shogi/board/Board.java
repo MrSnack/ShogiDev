@@ -1,5 +1,6 @@
 package dev.shogi.board;
 
+import dev.shogi.controller.Controller;
 import dev.shogi.figures.Figure;
 import dev.shogi.figures.basic.*;
 
@@ -10,11 +11,17 @@ import java.awt.event.ActionListener;
 
 public class Board extends JFrame {
 
-    private static Board board = new Board();
-
     private final int BOARDSIZE = 9;
     private final Dimension BOARDSIZEMAX = new Dimension(1000, 900);
     private final Dimension BOARDSIZEMIN = new Dimension(550, 450);
+
+    private JPanel pnlGame = new JPanel();
+    private JPanel pnlMenu = new JPanel();
+
+    private FieldListener fieldListener = new FieldListener();
+
+    private Field[][] fields = new Field[BOARDSIZE][BOARDSIZE];
+    private char[] fieldNames = this.initFieldnames();
 
     /*
 	 * weiß = 1 00000001 schwarz = 2 00000010 "beide" = 3 00000011
@@ -22,30 +29,15 @@ public class Board extends JFrame {
     private final int TURNWHITE = 1;
     private final int TURNBLACK = 2;
 
-    private int turn = TURNWHITE;
+    /**
+     * Angabe des aktuellen Zuges - Welche Farbe darf ziehen
+     * Schwarz beginnt beim Shogi
+     */
+    private int turn = TURNBLACK;
 
     private boolean isWhite = false;
     private boolean isTurnStart = true;
     private boolean isReversed;
-
-    private JPanel pnlGame = new JPanel();
-    private JPanel pnlMenu = new JPanel();
-    private JList<Figure> lstGraveyardBlack;
-    private JList<Figure> lstGraveyardWhite;
-
-    private FieldListener fieldListener = new FieldListener();
-
-    private Graveyard graveyardBlack = new Graveyard(isWhite);
-    private Graveyard graveyardWhite = new Graveyard(!isWhite);
-    private Field[][] fields = new Field[BOARDSIZE][BOARDSIZE];
-    private char[] fieldNames = this.initFieldnames();
-
-    public static Board getInstance() {
-        if (board == null) {
-            board = new Board();
-        }
-        return board;
-    }
 
     public void buildBoard() {
         this.setTitle("Shogi");
@@ -76,55 +68,58 @@ public class Board extends JFrame {
     }
 
     private void initFigures() {
-        for (int x = 0; x < fields.length; x++) {
-            for (int y = 0; y < fields[0].length; y++) {
-                Field f = new Field(this, isWhite, Character.toString(fieldNames[x]) + Character.getNumericValue(fieldNames[y + BOARDSIZE]));
-                f.setFieldX(x);
-                f.setFieldY(y);
-                fields[x][y] = f;
-                f.addActionListener(fieldListener);
-                pnlGame.add(f);
-                f.setBackground(isWhite ? new Color(139, 90, 43) : new Color(255, 165, 79));
+        //TODO Figurenerstellung aus Board nehmen
+        //TODO Figuren-Konstruktor ändern mit name & abbreviation
 
-                if (x == 2) {
-                    f.setFigure(new Pawn(f, true, true), true);
-                } else if (x == 6) {
-                    f.setFigure(new Pawn(f, false, true), true);
+        for (int row = 0; row < fields.length; row++) {
+            for (int column = 0; column < fields[0].length; column++) {
+                Field field = new Field(this, isWhite, Character.toString(fieldNames[row]) + Character.getNumericValue(fieldNames[column + BOARDSIZE]));
+                field.setFieldX(column);
+                field.setFieldY(row);
+                fields[row][column] = field;
+                field.addActionListener(fieldListener);
+                pnlGame.add(field);
+                field.setBackground(isWhite ? new Color(139, 90, 43) : new Color(255, 165, 79));
+
+                if (row == 2) {
+                    field.setFigure(new Pawn(field, "Pawn", "P", true, true), true);
+                } else if (row == 6) {
+                    field.setFigure(new Pawn(field, "Pawn", "P", false, true), true);
                 }
-                if (x == 1 && y == 1) {
-                    f.setFigure(new Rook(f, true, true), true);
-                } else if (x == 7 && y == 7) {
-                    f.setFigure(new Rook(f, false, true), true);
+                if (row == 1 && column == 1) {
+                    field.setFigure(new Rook(field, "Rook", "R", true, true), true);
+                } else if (row == 7 && column == 7) {
+                    field.setFigure(new Rook(field, "Rook", "R", false, true), true);
                 }
-                if (x == 1 && y == 7) {
-                    f.setFigure(new Bishop(f, true, true), true);
-                } else if (x == 7 && y == 1) {
-                    f.setFigure(new Bishop(f, false, true), true);
+                if (row == 1 && column == 7) {
+                    field.setFigure(new Bishop(field, "Bishop", "B", true, true), true);
+                } else if (row == 7 && column == 1) {
+                    field.setFigure(new Bishop(field, "Bishop", "B", false, true), true);
                 }
-                if (x == 0 && y == 0 || x == 0 && y == 8) {
-                    f.setFigure(new Lance(f, true, true), true);
-                } else if (x == 8 && y == 0 || x == 8 && y == 8) {
-                    f.setFigure(new Lance(f, false, true), true);
+                if (row == 0 && column == 0 || row == 0 && column == 8) {
+                    field.setFigure(new Lance(field, "Lance", "L", true, true), true);
+                } else if (row == 8 && column == 0 || row == 8 && column == 8) {
+                    field.setFigure(new Lance(field, "Lance", "L", false, true), true);
                 }
-                if (x == 0 && y == 1 || x == 0 && y == 7) {
-                    f.setFigure(new Knight(f, true, true), true);
-                } else if (x == 8 && y == 1 || x == 8 && y == 7) {
-                    f.setFigure(new Knight(f, false, true), true);
+                if (row == 0 && column == 1 || row == 0 && column == 7) {
+                    field.setFigure(new Knight(field, "Knight", "N", true, true), true);
+                } else if (row == 8 && column == 1 || row == 8 && column == 7) {
+                    field.setFigure(new Knight(field, "Knight", "N", false, true), true);
                 }
-                if (x == 0 && y == 2 || x == 0 && y == 6) {
-                    f.setFigure(new SilverGeneral(f, true, true), true);
-                } else if (x == 8 && y == 2 || x == 8 && y == 6) {
-                    f.setFigure(new SilverGeneral(f, false, true), true);
+                if (row == 0 && column == 2 || row == 0 && column == 6) {
+                    field.setFigure(new SilverGeneral(field, "SilverGeneral", "S", true, true), true);
+                } else if (row == 8 && column == 2 || row == 8 && column == 6) {
+                    field.setFigure(new SilverGeneral(field, false, true), true);
                 }
-                if (x == 0 && y == 3 || x == 0 && y == 5) {
-                    f.setFigure(new GoldenGeneral(f, true, true), true);
-                } else if (x == 8 && y == 3 || x == 8 && y == 5) {
-                    f.setFigure(new GoldenGeneral(f, false, true), true);
+                if (row == 0 && column == 3 || row == 0 && column == 5) {
+                    field.setFigure(new GoldenGeneral(field, true, true), true);
+                } else if (row == 8 && column == 3 || row == 8 && column == 5) {
+                    field.setFigure(new GoldenGeneral(field, false, true), true);
                 }
-                if (x == 0 && y == 4) {
-                    f.setFigure(new King(f, true, true), true);
-                } else if (x == 8 && y == 4) {
-                    f.setFigure(new King(f, false, true), true);
+                if (row == 0 && column == 4) {
+                    field.setFigure(new King(field, true, true), true);
+                } else if (row == 8 && column == 4) {
+                    field.setFigure(new King(field, false, true), true);
                 }
                 isWhite = !isWhite;
             }
@@ -145,34 +140,66 @@ public class Board extends JFrame {
         return fieldNames;
     }
 
-    public boolean isTurnStart() {
-        return isTurnStart;
+    public boolean isWhite() {
+        return isWhite;
     }
 
-    public Field[][] getFields() {
-        return fields;
+    public void setReversed(boolean reversed) {
+        isReversed = reversed;
     }
 
-    /*public class FieldListener implements ActionListener {
+    void saveTurnStart() {
+        isTurnStart = false;
+    }
+
+    public void saveTurnEnd(Figure figure) {
+        turn = figure.isWhite() ? TURNBLACK : TURNWHITE;
+        isTurnStart = true;
+    }
+
+    public class FieldListener implements ActionListener {
+
+        Figure figure = null;
 
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO FieldListener-Logik implementieren
-            Field f = null;
-            Field startField = null;
-            Field tempField = null;
-            Field kingField = null;
+            Field field = null;
+            Field startField;
+            Field tempField;
 
             for (int x = 0; x < fields.length; x++) {
                 for (int y = 0; y < fields[x].length; y++) {
                     if (e.getSource() == fields[x][y]) {
-                        f = fields[x][y];
-                        System.out.println(f.getX());
-                        System.out.println(f.getY());
+                        field = fields[x][y];
+                        break;
                     }
                 }
             }
 
+            int turnMemory = turn;
+            if (isTurnStart) {
+                if ((figure = field.getFigure()) != null) {
+                    if (!figure.isWhite() && ((turn & TURNBLACK) != 0) || figure.isWhite() && ((turn & TURNWHITE) != 0)) {
+                        field.removeFigure();
+                    }
+                }
+            } else if (figure.isOK(field)) {
+                tempField = field;
+                startField = figure.getField();
+                field.setFigure(figure);
+                Controller.getInstance().moveFigure(figure, startField, tempField);
+                if (!isReversed) {
+                    tempField.setFigure(figure);
+                } else {
+                    turn = turnMemory;
+                    isReversed = false;
+                }
+            } else {
+                turn = turnMemory;
+                figure.getField().setFigure(figure);
+            }
+
         }
-    }*/
+    }
 }
