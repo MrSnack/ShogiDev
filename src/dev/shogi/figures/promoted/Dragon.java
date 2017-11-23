@@ -17,8 +17,8 @@ public class Dragon extends Rook {
     */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field field) {
-        return super.isOK(fieldArray, field);
+    public boolean isOK(Field[][] fieldArray, Field targetField) {
+        return super.isOK(fieldArray, targetField);
     }
 
     @Override

@@ -16,10 +16,10 @@ public class Pawn extends Figure {
     */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field field) {
+    public boolean isOK(Field[][] fieldArray, Field targetField) {
         //TODO Logik implementieren
-        if(super.isOK(fieldArray, field)) {
-            if((this.getField().getFieldY() == (field.getFieldY() + 1) || this.getField().getFieldY() == (field.getFieldY() + 2)) && this.getField().getFieldX() == field.getFieldX())
+        if(super.isOK(fieldArray, targetField)) {
+            if((this.getField().getFieldY() == (targetField.getFieldY() + 1) || this.getField().getFieldY() == (targetField.getFieldY() + 2)) && this.getField().getFieldX() == targetField.getFieldX())
                 return true;
 
         }

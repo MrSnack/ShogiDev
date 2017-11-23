@@ -16,7 +16,7 @@ public class Horse extends Bishop {
     */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field field) {
+    public boolean isOK(Field[][] fieldArray, Field targetField) {
         //TODO Logik implementieren
         return false;
     }

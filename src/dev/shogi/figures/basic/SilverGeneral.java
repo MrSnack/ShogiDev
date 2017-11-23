@@ -16,7 +16,7 @@ public class SilverGeneral extends Figure {
     */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field field) {
+    public boolean isOK(Field[][] fieldArray, Field targetField) {
         //TODO Logik implementieren
         //Drawpattern: 11010101
         return false;

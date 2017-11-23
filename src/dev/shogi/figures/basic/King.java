@@ -15,9 +15,21 @@ public class King extends Figure {
         */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field field) {
-        //TODO Logik implementieren
-        return false;
+    public boolean isOK(Field[][] fieldArray, Field targetField) {
+        boolean isValid = false;
+
+        if(super.isOK(fieldArray, targetField)){
+            for(int i = targetField.getFieldX(); i <= 0; i++){
+                for(int j = targetField.getFieldY(); j <= 0; j++){
+
+                }
+            }
+
+            isValid =  true;
+        }else {
+            isValid = false;
+        }
+        return isValid;
     }
 
     @Override
@@ -46,7 +58,7 @@ public class King extends Figure {
         }
     }
 
-    private boolean imSchach(boolean istSchwarz) {
+ /*   private boolean inSchach(boolean isblack) {
 
         // K�nig im Schach?
         Figur temp = this.getFigur(istSchwarz, Koenig.class);
@@ -77,4 +89,5 @@ public class King extends Figure {
         }
         return false;
     }
+    */
 }
