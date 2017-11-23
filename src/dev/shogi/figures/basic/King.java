@@ -45,4 +45,36 @@ public class King extends Figure {
             }
         }
     }
+
+    private boolean imSchach(boolean istSchwarz) {
+
+        // K�nig im Schach?
+        Figur temp = this.getFigur(istSchwarz, Koenig.class);
+        Koenig koenig = temp != null ? (Koenig) temp : null;
+        if (koenig != null) {
+
+            Figur fi = null;
+            Feld f = koenig.getFeld();
+
+            for (int i = 0; i < feld.length; i++) {
+                for (int j = 0; j < feld.length; j++) {
+                    if (feld[i][j] != null) {
+                        temp = feld[i][j].getFigur();
+                        fi = temp != null ? (Figur) temp : null;
+                        if (fi != null) {
+                            if (fi.istOK(feld, f) && this.istOK(fi, f)) {
+                                schlageInsSchachStellendeFigur(fi);
+                                System.out.println("K�nig steht im Schach!");
+                                return true;
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+        }
+        return false;
+    }
 }

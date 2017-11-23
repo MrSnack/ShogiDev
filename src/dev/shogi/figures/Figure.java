@@ -68,8 +68,6 @@ public abstract class Figure {
 
     public abstract String getSymbol();
 
-//    public abstract String getImageURL(boolean isEuropeanIcon);
-
     public String getImageURL() {
         if (isEuropeanIcon) {
             return "resources/europeanIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
