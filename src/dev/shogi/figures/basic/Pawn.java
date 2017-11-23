@@ -9,16 +9,14 @@ public class Pawn extends Figure {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public Pawn(boolean isWhite) {
-        super("Pawn", "10000000", isWhite, "(P)*", "");
+    public Pawn(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
-        if(super.isOK(fieldArray, targetField)) {
+        if(super.isOK(targetField)) {
             if((this.getField().getFieldY() == (targetField.getFieldY() + 1) || this.getField().getFieldY() == (targetField.getFieldY() + 2)) && this.getField().getFieldX() == targetField.getFieldX())
                 return true;
 

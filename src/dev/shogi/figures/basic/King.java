@@ -9,17 +9,16 @@ public class King extends Figure {
         super(field, isWhite, isEuropean);
     }
 
-    /*public King(boolean isWhite) {
-            super("King", "11111111", isWhite, "K", "");
-        }
-        */
+    public King(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
+    }
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         boolean isValid = false;
 
-        if(super.isOK(fieldArray, targetField)){
-            for(int i = targetField.getFieldX(); i <= ; i++){
+        if(super.isOK(targetField)){
+            for(int i = targetField.getFieldX(); i <= 1; i++){
                 for(int j = targetField.getFieldY(); j <= 0; j++){
 
                 }

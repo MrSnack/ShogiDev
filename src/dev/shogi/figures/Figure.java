@@ -17,13 +17,6 @@ public abstract class Figure {
      */
     private String abbreviation;
     /**
-     * Drawpattern besteht aus 9 Zeichen.
-     * 0 = kein Zug
-     * 1 = Zug für 1 Feld
-     * 2 = Zug für unendlich Felder
-     */
-    private String drawpattern;
-    /**
      * Boolean zur Bestimmung der Farbe
      */
     private boolean isWhite;
@@ -44,12 +37,16 @@ public abstract class Figure {
         this.isEuropeanIcon = isEuropeanIcon;
     }
 
-    public void setField(Field field) {
+    public Figure(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
         this.field = field;
+        this.name = name;
+        this.abbreviation = abbreviation;
+        this.isWhite = isWhite;
+        this.isEuropeanIcon = isEuropeanIcon;
     }
 
-    public String getDrawpattern() {
-        return drawpattern;
+    public void setField(Field field) {
+        this.field = field;
     }
 
     public boolean isWhite() {
@@ -64,7 +61,7 @@ public abstract class Figure {
         return this.getClass().getSimpleName();
     }
 
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO: Allgemeine Zugregel einführen
         return true;
     }

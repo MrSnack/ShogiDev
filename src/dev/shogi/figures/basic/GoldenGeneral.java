@@ -9,17 +9,12 @@ public class GoldenGeneral extends Figure {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-        public GoldenGeneral(String name, String drawpattern, boolean isWhite, String symbol, String imageURL){
-            super(name, drawpattern, isWhite, symbol, imageURL);
-        }
+    public GoldenGeneral(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
+    }
 
-        public GoldenGeneral(boolean isWhite) {
-            super("Golden General", "11101011", isWhite, "G", "");
-        }
-        */
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

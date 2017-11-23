@@ -9,14 +9,12 @@ public class Knight extends Figure {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public Knight(boolean isWhite) {
-        super("Knight", "", isWhite, "N", "");
+    public Knight(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

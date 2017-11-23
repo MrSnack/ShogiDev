@@ -9,14 +9,12 @@ public class PromotedPawn extends GoldenGeneral {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public PromotedPawn(boolean isWhite) {
-        super("PromotedPawn", "11101011", isWhite, "+P", "");
+    public PromotedPawn(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

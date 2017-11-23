@@ -9,16 +9,12 @@ public class Bishop extends Figure {
         super(field, isWhite, isEuropean);
     }
 
-    /*public Bishop(String name, String drawpattern, boolean isWhite, String symbol, String imageURL){
-        super(name, drawpattern, isWhite, symbol, imageURL);
+    public Bishop(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    public Bishop(boolean isWhite) {
-        super("Bishop", "02020202", isWhite, "B", "");
-    }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

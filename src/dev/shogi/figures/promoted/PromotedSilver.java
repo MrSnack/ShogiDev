@@ -9,14 +9,12 @@ public class PromotedSilver extends GoldenGeneral {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public PromotedSilver(boolean isWhite) {
-        super("PromotedSilver", "11101011", isWhite, "+S", "");
+    public PromotedSilver(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

@@ -10,15 +10,13 @@ public class Dragon extends Rook {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public Dragon(boolean isWhite) {
-        super("Dragon","21212121", isWhite, "+R", "");
+    public Dragon(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
-        return super.isOK(fieldArray, targetField);
+    public boolean isOK(Field targetField) {
+        return super.isOK(targetField);
     }
 
     @Override

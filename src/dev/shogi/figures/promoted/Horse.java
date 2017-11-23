@@ -9,14 +9,12 @@ public class Horse extends Bishop {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public Horse(boolean isWhite) {
-        super("Horse", "12121212",isWhite, "+B", "");
+    public Horse(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

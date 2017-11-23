@@ -9,18 +9,12 @@ public class Rook extends Figure {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public Rook(String name, String drawpattern, boolean isWhite, String symbol, String imageURL){
-        super(name, drawpattern, isWhite, symbol, imageURL);
+    public Rook(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-
-    public Rook(boolean isWhite) {
-        super("Rook", "20202020", isWhite, "R", "");
-    }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         return false;
     }

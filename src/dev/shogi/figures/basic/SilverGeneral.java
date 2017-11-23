@@ -9,14 +9,12 @@ public class SilverGeneral extends Figure {
         super(field, isWhite, isEuropeanIcon);
     }
 
-    /*
-    public SilverGeneral(boolean isWhite) {
-        super("SilverGeneral", "11010101", isWhite, "S", "");
+    public SilverGeneral(Field field, String name, String abbreviation, boolean isWhite, boolean isEuropeanIcon) {
+        super(field, name, abbreviation, isWhite, isEuropeanIcon);
     }
-    */
 
     @Override
-    public boolean isOK(Field[][] fieldArray, Field targetField) {
+    public boolean isOK(Field targetField) {
         //TODO Logik implementieren
         //Drawpattern: 11010101
         return false;
