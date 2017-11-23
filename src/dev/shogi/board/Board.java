@@ -10,11 +10,23 @@ import java.awt.event.ActionListener;
 
 public class Board extends JFrame {
 
+    private static Board board = new Board();
+
     private final int BOARDSIZE = 9;
     private final Dimension BOARDSIZEMAX = new Dimension(1000, 900);
     private final Dimension BOARDSIZEMIN = new Dimension(550, 450);
 
+    /*
+	 * weiß = 1 00000001 schwarz = 2 00000010 "beide" = 3 00000011
+	 */
+    private final int TURNWHITE = 1;
+    private final int TURNBLACK = 2;
+
+    private int turn = TURNWHITE;
+
     private boolean isWhite = false;
+    private boolean isTurnStart = true;
+    private boolean isReversed;
 
     private JPanel pnlGame = new JPanel();
     private JPanel pnlMenu = new JPanel();
@@ -28,7 +40,12 @@ public class Board extends JFrame {
     private Field[][] fields = new Field[BOARDSIZE][BOARDSIZE];
     private char[] fieldNames = this.initFieldnames();
 
-    public Board() {}
+    public static Board getInstance() {
+        if (board == null) {
+            board = new Board();
+        }
+        return board;
+    }
 
     public void buildBoard() {
         this.setTitle("Shogi");
@@ -36,7 +53,10 @@ public class Board extends JFrame {
         this.setMinimumSize(BOARDSIZEMIN);
         this.setPreferredSize(BOARDSIZEMAX);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
         pnlGame.setLayout(new GridLayout(BOARDSIZE, BOARDSIZE));
+        //TODO Menu-Layout wählen
+        //TODO Menu Spielsteinauswahl hinzufügen (europäisch oder japanisch)
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
         } catch (Exception e) {
@@ -123,11 +143,34 @@ public class Board extends JFrame {
         return fieldNames;
     }
 
-    public class FieldListener implements ActionListener {
+    public boolean isTurnStart() {
+        return isTurnStart;
+    }
+
+    public Field[][] getFields() {
+        return fields;
+    }
+
+    /*public class FieldListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             //TODO FieldListener-Logik implementieren
+            Field f = null;
+            Field startField = null;
+            Field tempField = null;
+            Field kingField = null;
+
+            for (int x = 0; x < fields.length; x++) {
+                for (int y = 0; y < fields[x].length; y++) {
+                    if (e.getSource() == fields[x][y]) {
+                        f = fields[x][y];
+                        System.out.println(f.getX());
+                        System.out.println(f.getY());
+                    }
+                }
+            }
+
         }
-    }
+    }*/
 }
