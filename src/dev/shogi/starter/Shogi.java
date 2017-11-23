@@ -8,5 +8,4 @@ public class Shogi {
         System.out.println("Startet!");
         new Controller();
     }
-
 }
