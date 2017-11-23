@@ -11,5 +11,17 @@ public class Controller {
         board.buildBoard();
     }
 
+    public void createBoard() {
+
+    }
+
+    public void createFigures() {
+
+    }
+
+    public void createGraveyard() {
+
+    }
+
 
 }
