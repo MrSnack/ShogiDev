@@ -1,5 +1,6 @@
 package dev.shogi.figures.basic;
 
+import com.sun.xml.internal.bind.v2.TODO;
 import dev.shogi.board.Field;
 import dev.shogi.figures.Figure;
 
@@ -17,10 +18,18 @@ public class King extends Figure {
     public boolean isOK(Field targetField) {
         boolean isValid = false;
 
+        //Lässt die Supermethode prüfen, ob zwischen dem Zielfeld und dem momentanen eine Figur steht
+        //
+        //Danach wird geprüft, ob das Zielfeld auch im Laufmuster des Königs enthalten ist
+        //TODO prüfen, ob der könig sich in eine Schachsituation begibt
         if(super.isOK(targetField)){
-            for(int i = targetField.getFieldX(); i <= 1; i++){
-                for(int j = targetField.getFieldY(); j <= 0; j++){
+            for(int i = -1; i <= 1; i++){
+                for(int j = -1; j <= 1; j++){
+                    if(targetField.getFieldX() == (this.getField().getFieldX() + i) || targetField.getFieldY()
+                     == (this.getField().getFieldY() + j)){
 
+                            isValid = true;
+                    }
                 }
             }
 
@@ -56,37 +65,4 @@ public class King extends Figure {
             }
         }
     }
-
- /*   private boolean inSchach(boolean isblack) {
-
-        // K�nig im Schach?
-        Figur temp = this.getFigur(istSchwarz, Koenig.class);
-        Koenig koenig = temp != null ? (Koenig) temp : null;
-        if (koenig != null) {
-
-            Figur fi = null;
-            Feld f = koenig.getFeld();
-
-            for (int i = 0; i < feld.length; i++) {
-                for (int j = 0; j < feld.length; j++) {
-                    if (feld[i][j] != null) {
-                        temp = feld[i][j].getFigur();
-                        fi = temp != null ? (Figur) temp : null;
-                        if (fi != null) {
-                            if (fi.istOK(feld, f) && this.istOK(fi, f)) {
-                                schlageInsSchachStellendeFigur(fi);
-                                System.out.println("K�nig steht im Schach!");
-                                return true;
-                            }
-                        }
-
-                    }
-
-                }
-            }
-
-        }
-        return false;
-    }
-    */
 }
