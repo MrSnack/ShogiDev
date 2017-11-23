@@ -19,7 +19,7 @@ public class King extends Figure {
         boolean isValid = false;
 
         if(super.isOK(fieldArray, targetField)){
-            for(int i = targetField.getFieldX(); i <= 0; i++){
+            for(int i = targetField.getFieldX(); i <= ; i++){
                 for(int j = targetField.getFieldY(); j <= 0; j++){
 
                 }
