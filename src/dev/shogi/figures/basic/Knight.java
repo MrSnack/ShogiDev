@@ -15,7 +15,25 @@ public class Knight extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+
+        if (super.isOK(targetField)) {
+            //weißer Springer darf nur nach unten "springen" | schwarzes Pferd nur nach oben "springen"
+            if ((this.isWhite() && yGoingFields == 2 && Math.abs(xGoingFields) == 1) ||
+                    (!this.isWhite() && yGoingFields == -2 && Math.abs(xGoingFields) == 1)) {
+                return true;
+            }
+        }
         return false;
     }
 }
