@@ -174,10 +174,10 @@ public class Board extends JFrame {
             Field startField;
             Field tempField;
 
-            for (int x = 0; x < fields.length; x++) {
-                for (int y = 0; y < fields[x].length; y++) {
-                    if (e.getSource() == fields[x][y]) {
-                        field = fields[x][y];
+            for (Field[] fieldsX : fields) {
+                for (Field fieldXY : fieldsX) {
+                    if (e.getSource() == fieldXY) {
+                        field = fieldXY;
                         break;
                     }
                 }
