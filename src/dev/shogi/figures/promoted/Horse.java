@@ -18,11 +18,4 @@ public class Horse extends Bishop {
         //TODO Logik implementieren
         return false;
     }
-
-    @Override
-    public String getSymbol() {
-        //Unicode des beförderten Läufers (Pferd) (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u99AC";
-    }
 }

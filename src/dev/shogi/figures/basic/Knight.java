@@ -18,11 +18,4 @@ public class Knight extends Figure {
         //TODO Logik implementieren
         return false;
     }
-
-    @Override
-    public String getSymbol() {
-        //Unicode des Springers (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u6842";
-    }
 }

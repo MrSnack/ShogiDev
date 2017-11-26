@@ -1,6 +1,5 @@
 package dev.shogi.board;
 
-import dev.shogi.controller.Controller;
 import dev.shogi.figures.Figure;
 
 import javax.imageio.ImageIO;

@@ -19,11 +19,4 @@ public class SilverGeneral extends Figure {
         //Drawpattern: 11010101
         return false;
     }
-
-    @Override
-    public String getSymbol() {
-        //Unicode des silbernen Generals (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u9280";
-    }
 }

@@ -1,6 +1,5 @@
 package dev.shogi.figures.basic;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import dev.shogi.board.Field;
 import dev.shogi.figures.Figure;
 
@@ -41,20 +40,10 @@ public class King extends Figure {
     }
 
     @Override
-    public String getSymbol() {
+    public String getImageURL() {
         //Unicode des Königs (jap. Symbol)
         //weiß: König (\u738B)
         //schwarz: "challenging" König (\u7389)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        if (this.isWhite()) {
-            return "\u738B";
-        } else {
-            return "\u7389";
-        }
-    }
-
-    @Override
-    public String getImageURL() {
         if (this.isWhite()) {
             return super.getImageURL();
         } else {

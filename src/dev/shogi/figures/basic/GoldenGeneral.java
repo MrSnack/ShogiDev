@@ -19,10 +19,4 @@ public class GoldenGeneral extends Figure {
         return false;
     }
 
-    @Override
-    public String getSymbol() {
-        //Unicode des goldenen Generals (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u91D1";
-    }
 }

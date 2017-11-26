@@ -16,13 +16,11 @@ public class Dragon extends Rook {
 
     @Override
     public boolean isOK(Field targetField) {
-        return super.isOK(targetField);
+        if (super.isOK(targetField)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    @Override
-    public String getSymbol() {
-        //Unicode des beförderten Turms (Drache) (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u9F8D";
-    }
 }

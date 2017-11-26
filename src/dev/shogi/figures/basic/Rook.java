@@ -18,11 +18,4 @@ public class Rook extends Figure {
         //TODO Logik implementieren
         return false;
     }
-
-    @Override
-    public String getSymbol() {
-        //Unicode des Turms (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u98DB";
-    }
 }

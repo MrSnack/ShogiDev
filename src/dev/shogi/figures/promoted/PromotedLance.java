@@ -15,14 +15,10 @@ public class PromotedLance extends GoldenGeneral {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
-        return false;
-    }
-
-    @Override
-    public String getSymbol() {
-        //Unicode des beförderten Lanzenreiters (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u674F";
+        if (super.isOK(targetField)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

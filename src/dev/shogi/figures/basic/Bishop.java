@@ -19,10 +19,4 @@ public class Bishop extends Figure {
         return false;
     }
 
-    @Override
-    public String getSymbol() {
-        //Unicode des Läufers (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u89D2";
-    }
 }

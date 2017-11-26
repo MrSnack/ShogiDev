@@ -18,11 +18,4 @@ public class Lance extends Figure {
         //TODO Logik implementieren
         return false;
     }
-
-    @Override
-    public String getSymbol() {
-        //Unicode des Lanzenreiters (jap. Symbol)
-        //TODO Symbol innerhalb des Spielsteins einfügen
-        return "\u9999";
-    }
 }

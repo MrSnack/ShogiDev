@@ -9,6 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Darstellng des Bretts als GUI
+ *
+ * @author Jannik Wolf
+ */
 public class Board extends JFrame {
 
     private final int BOARDSIZE = 9;
@@ -68,15 +73,13 @@ public class Board extends JFrame {
     }
 
     private void initFigures() {
-        //TODO Figurenerstellung aus Board nehmen
-        //TODO Figuren-Konstruktor ändern mit name & abbreviation
 
         for (int row = 0; row < fields.length; row++) {
             for (int column = 0; column < fields[0].length; column++) {
                 Field field = new Field(this, isWhite, Character.toString(fieldNames[row]) + Character.getNumericValue(fieldNames[column + BOARDSIZE]));
                 field.setFieldX(column);
                 field.setFieldY(row);
-                fields[row][column] = field;
+                fields[column][row] = field;
                 field.addActionListener(fieldListener);
                 pnlGame.add(field);
                 field.setBackground(isWhite ? new Color(139, 90, 43) : new Color(255, 165, 79));
@@ -109,17 +112,17 @@ public class Board extends JFrame {
                 if (row == 0 && column == 2 || row == 0 && column == 6) {
                     field.setFigure(new SilverGeneral(field, "SilverGeneral", "S", true, true), true);
                 } else if (row == 8 && column == 2 || row == 8 && column == 6) {
-                    field.setFigure(new SilverGeneral(field, false, true), true);
+                    field.setFigure(new SilverGeneral(field, "SilverGeneral", "S", false, true), true);
                 }
                 if (row == 0 && column == 3 || row == 0 && column == 5) {
-                    field.setFigure(new GoldenGeneral(field, true, true), true);
+                    field.setFigure(new GoldenGeneral(field, "GoldenGeneral", "G", true, true), true);
                 } else if (row == 8 && column == 3 || row == 8 && column == 5) {
-                    field.setFigure(new GoldenGeneral(field, false, true), true);
+                    field.setFigure(new GoldenGeneral(field, "GoldenGeneral", "G", false, true), true);
                 }
                 if (row == 0 && column == 4) {
-                    field.setFigure(new King(field, true, true), true);
+                    field.setFigure(new King(field, "King", "K", true, true), true);
                 } else if (row == 8 && column == 4) {
-                    field.setFigure(new King(field, false, true), true);
+                    field.setFigure(new King(field, "King", "K", false, true), true);
                 }
                 isWhite = !isWhite;
             }
@@ -138,6 +141,10 @@ public class Board extends JFrame {
         }
 
         return fieldNames;
+    }
+
+    public Field[][] getFields() {
+        return fields;
     }
 
     public boolean isWhite() {
@@ -163,7 +170,6 @@ public class Board extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            //TODO FieldListener-Logik implementieren
             Field field = null;
             Field startField;
             Field tempField;
@@ -196,8 +202,8 @@ public class Board extends JFrame {
                     isReversed = false;
                 }
             } else {
-                turn = turnMemory;
                 figure.getField().setFigure(figure);
+                turn = turnMemory;
             }
 
         }
