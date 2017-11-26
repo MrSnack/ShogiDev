@@ -88,9 +88,11 @@ public class Field extends JButton {
         }
     }
 
-    public void removeFigure() {
+    public void removeFigure(boolean isTurn) {
         this.figure = null;
-        board.saveTurnStart();
+        if (isTurn) {
+            board.getPnlGame().saveTurnStart();
+        }
         this.setIcon(null);
     }
 

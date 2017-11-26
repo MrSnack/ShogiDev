@@ -50,7 +50,7 @@ public class King extends Figure {
             if (this.isEuropeanIcon()) {
                 return "resources/europeanIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
             } else {
-                return "resources/japaneseIcons/challening" + getClass().getSimpleName().toLowerCase() + ".png";
+                return "resources/japaneseIcons/challenging" + getClass().getSimpleName().toLowerCase() + ".png";
             }
         }
     }

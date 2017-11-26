@@ -67,12 +67,12 @@ public abstract class Figure {
      * Methode zum Setzen des neuen Feldes der Figur.
      *
      * @param field - Zielfeld des Zuges, wo sich die Figur dann befinden soll
-     * @param init - true, wenn die Figur bei der Brettinitialisierung gesetzt wurde
+     * @param init  - true, wenn die Figur bei der Brettinitialisierung gesetzt wurde
      */
     public void setField(Field field, boolean init) {
         this.field = field;
         if (!init) {
-            field.getBoard().saveTurnEnd(this);
+            field.getBoard().getPnlGame().saveTurnEnd(this);
         }
     }
 
@@ -95,12 +95,12 @@ public abstract class Figure {
     }
 
     /**
-     * Die Methode gibt den englischen Namen der Figur zurück (Classname)
+     * Die Methode gibt den englischen Namen der Figur zurück
      *
-     * @return Name der Figur (Classname)
+     * @return Englischen Namen der Figur
      */
     public String getName() {
-        return this.getClass().getSimpleName();
+        return this.name;
     }
 
     /**
@@ -114,7 +114,7 @@ public abstract class Figure {
      * @return true, wenn Figur im Allgemeinen ziehen darf
      */
     public boolean isOK(Field targetField) {
-        Field[][] fields = this.getField().getBoard().getFields();
+        Field[][] fields = this.getField().getBoard().getPnlGame().getFields();
 
         int xStartPos = this.getField().getFieldX();
         int yStartPos = this.getField().getFieldY();
@@ -202,5 +202,9 @@ public abstract class Figure {
 
     public boolean isEuropeanIcon() {
         return isEuropeanIcon;
+    }
+
+    public void setEuropeanIcon(boolean europeanIcon) {
+        this.isEuropeanIcon = europeanIcon;
     }
 }
