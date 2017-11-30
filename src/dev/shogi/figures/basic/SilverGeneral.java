@@ -15,8 +15,6 @@ public class SilverGeneral extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
-
         int xStartPos = this.getField().getFieldX();
         int yStartPos = this.getField().getFieldY();
 
