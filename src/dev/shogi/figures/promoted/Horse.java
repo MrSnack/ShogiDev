@@ -15,7 +15,26 @@ public class Horse extends Bishop {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
-        return false;
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+        if (super.isOK(targetField)) {
+            return true;
+        } else {
+            if (Math.abs(xGoingFields) == 1 && Math.abs(yGoingFields) == 0 ||
+                    Math.abs(xGoingFields) == 0 && Math.abs(yGoingFields) == 1) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
