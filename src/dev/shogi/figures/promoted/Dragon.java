@@ -16,11 +16,25 @@ public class Dragon extends Rook {
 
     @Override
     public boolean isOK(Field targetField) {
-        if (super.isOK(targetField)) {
+
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+
+        if(super.isOK(targetField)){
             return true;
-        } else {
-            return false;
+        }else if((Math.abs(xGoingFields) == 1 && Math.abs(yGoingFields) == 1)){
+            return true;
         }
+        return false;
     }
 
 }
