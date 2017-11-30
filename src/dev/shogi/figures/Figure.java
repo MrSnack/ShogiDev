@@ -110,7 +110,7 @@ public abstract class Figure {
      * - Falls auf dem Zielfeld eine Figur ist, muss sie vom Gegner sein
      * - Figuren dürfen nicht über andere Figuren springen, außer der Springer
      *
-     * @param targetField
+     * @param targetField - Zielfeld des Zuges
      * @return true, wenn Figur im Allgemeinen ziehen darf
      */
     public boolean isOK(Field targetField) {

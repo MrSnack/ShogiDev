@@ -27,11 +27,12 @@ public class Bishop extends Figure {
         //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
         int yGoingFields = yTargetPos - yStartPos;
 
-        if (Math.abs(xGoingFields) == Math.abs(yGoingFields)) {
-            return true;
-        } else {
-            return false;
+        if (super.isOK(targetField)) {
+            if (Math.abs(xGoingFields) == Math.abs(yGoingFields)) {
+                return true;
+            }
         }
+        return false;
     }
 
 }
