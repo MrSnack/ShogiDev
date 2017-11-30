@@ -5,6 +5,7 @@ import dev.shogi.figures.Figure;
 
 public class King extends Figure {
 
+
     public King(Field field, boolean isWhite, boolean isEuropean) {
         super(field, isWhite, isEuropean);
     }
@@ -15,28 +16,35 @@ public class King extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        boolean isValid = false;
+
 
         //Lässt die Supermethode prüfen, ob zwischen dem Zielfeld und dem momentanen eine Figur steht
         //
         //Danach wird geprüft, ob das Zielfeld auch im Laufmuster des Königs enthalten ist
         //TODO prüfen, ob der könig sich in eine Schachsituation begibt
-        if(super.isOK(targetField)){
-            for(int i = -1; i <= 1; i++){
-                for(int j = -1; j <= 1; j++){
-                    if(targetField.getFieldX() == (this.getField().getFieldX() + i) || targetField.getFieldY()
-                     == (this.getField().getFieldY() + j)){
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
 
-                            isValid = true;
-                    }
-                }
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+
+
+        if (super.isOK(targetField)) {
+
+            //Fälle in denen der König sich bewegen darf
+            //Jeweils 1 Feld nach oben, unten, links, rechts, sowie diagonal in alle Richtungen
+
+            if (Math.abs(xGoingFields) <= 1 && Math.abs(yGoingFields) <= 1) {
+                return true;
             }
-
-            isValid =  true;
-        }else {
-            isValid = false;
         }
-        return isValid;
+        return false;
     }
 
     @Override
