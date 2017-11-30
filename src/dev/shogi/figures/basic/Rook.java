@@ -15,10 +15,27 @@ public class Rook extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
+
+
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
 
         if(super.isOK(targetField)){
-
+            //Fälle in denen der Turm ziehen darf
+            //Unbegrenzt nach oben, unten, rechts und links
+            if((Math.abs(xGoingFields) >= 1 && yGoingFields == 0) ||
+                    (Math.abs(yGoingFields) >= 1 && xGoingFields == 0)){
+                return true;
+            }
         }
 
         return false;

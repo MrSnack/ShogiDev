@@ -16,7 +16,30 @@ public class SilverGeneral extends Figure {
     @Override
     public boolean isOK(Field targetField) {
         //TODO Logik implementieren
-        //Drawpattern: 11010101
+
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+
+
+        if (super.isOK(targetField)) {
+            //Fälle in denen der silberne General sich bewegen darf.
+            //maximal 1 Feld in alle diagonalen
+            //sowie 1 Feld nach oben
+            if ((Math.abs(xGoingFields) == 1 && Math.abs(yGoingFields) == 1) ||
+                    (this.isWhite() && Math.abs(xGoingFields) == 0 && yGoingFields == 1) ||
+                    (!this.isWhite() && Math.abs(xGoingFields) == 0 && yGoingFields == -1)) {
+                return true;
+            }
+        }
         return false;
     }
 }
