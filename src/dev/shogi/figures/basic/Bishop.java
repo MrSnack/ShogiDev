@@ -15,8 +15,23 @@ public class Bishop extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
-        return false;
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+
+        if (Math.abs(xGoingFields) == Math.abs(yGoingFields)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

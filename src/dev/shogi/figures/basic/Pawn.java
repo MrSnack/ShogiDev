@@ -15,17 +15,17 @@ public class Pawn extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        int dX = this.getField().getFieldX() - targetField.getFieldX();
-        int dY = this.getField().getFieldY() - targetField.getFieldY();
+        int xGoingFields = this.getField().getFieldX() - targetField.getFieldX();
+        int yGoingFields = this.getField().getFieldY() - targetField.getFieldY();
 
         int yStartPos = this.getField().getFieldY();
         int yTargetPos = targetField.getFieldY();
 
         if(super.isOK(targetField)) {
             //Zug: vorwärts (auf y-Achse)
-            if (Math.abs(dX) == 0) {
+            if (Math.abs(xGoingFields) == 0) {
                 //Zug: maximal 1 Schritt
-                if (Math.abs(dY) == 1) {
+                if (Math.abs(yGoingFields) == 1) {
                     //Zug: weiß nach unten & schwarz nach oben
                     if ((yStartPos > yTargetPos && !isWhite()) || (yStartPos < yTargetPos && isWhite())) {
                         return true;
