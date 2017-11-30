@@ -16,6 +16,11 @@ public class Rook extends Figure {
     @Override
     public boolean isOK(Field targetField) {
         //TODO Logik implementieren
+
+        if(super.isOK(targetField)){
+
+        }
+
         return false;
     }
 }

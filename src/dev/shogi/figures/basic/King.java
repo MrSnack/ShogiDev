@@ -16,8 +16,6 @@ public class King extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-
-
         //Lässt die Supermethode prüfen, ob zwischen dem Zielfeld und dem momentanen eine Figur steht
         //
         //Danach wird geprüft, ob das Zielfeld auch im Laufmuster des Königs enthalten ist
