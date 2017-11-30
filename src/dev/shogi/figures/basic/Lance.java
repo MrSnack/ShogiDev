@@ -15,7 +15,31 @@ public class Lance extends Figure {
 
     @Override
     public boolean isOK(Field targetField) {
-        //TODO Logik implementieren
+
+        int xStartPos = this.getField().getFieldX();
+        int yStartPos = this.getField().getFieldY();
+
+        int xTargetPos = targetField.getFieldX();
+        int yTargetPos = targetField.getFieldY();
+
+
+        //Anzahl uebersprungener Spalten | nach rechts: xGoingFields = positiv | nach links: xGoingFields = negativ
+        int xGoingFields = xTargetPos - xStartPos;
+
+        //Anzahl uebersprungener Zeilen | nach unten: yGoingFields = positiv | nach oben: yGoingFields = negativ
+        int yGoingFields = yTargetPos - yStartPos;
+
+
+
+        //Fälle in denen die Lanze sich bewegen darf
+        //Beliebige Anzahl an Feldern nach vorne
+
+        if(super.isOK(targetField)){
+            if(this.isWhite() && xGoingFields == 0 && yGoingFields >= 1 ||
+                    !this.isWhite() && xGoingFields == 0 && yGoingFields <= -1){
+                return true;
+            }
+        }
         return false;
     }
 }

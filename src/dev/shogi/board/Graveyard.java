@@ -12,12 +12,12 @@ public class Graveyard extends ArrayList<Figure> {
         this.isWhite = isWhite;
     }
 
-    public boolean addFigure(Figure figure){
-        return this.add(figure);
+    public void addFigure(Figure figure){
+         this.add(figure);
     }
 
-    public boolean removeFigure(Figure figure) {
-        return super.remove(figure);
+    public void removeFigure(Figure figure) {
+         this.remove(figure);
     }
 
     public ArrayList<Figure> getFigureList() {
