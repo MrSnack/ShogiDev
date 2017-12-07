@@ -35,8 +35,8 @@ public class Controller {
     }
 
     public void createGraveyard() {
-        graveyardBlack = new Graveyard(board.getPnlGame().isWhite());
-        graveyardWhite = new Graveyard(!board.getPnlGame().isWhite());
+        graveyardBlack = new Graveyard(board,board.getPnlGame().isWhite());
+        graveyardWhite = new Graveyard(board,!board.getPnlGame().isWhite());
     }
 
     public void moveFigure(Figure figure, Field startField, Field targetField) {
@@ -60,7 +60,8 @@ public class Controller {
     }
 
     private boolean isTsume(boolean isWhite) {
-        //TODO: Logik des im Schach programmieren
+        //TODO: Logik des "im Schach" programmieren
+
         return false;
     }
 
