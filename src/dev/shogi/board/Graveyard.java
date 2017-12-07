@@ -50,7 +50,34 @@ public class Graveyard extends ArrayList<Figure> {
          this.remove(figure);
     }
 
-    public ArrayList<Figure> getFigureList() {
-        return this;
+    public ArrayList<Figure> getFigureList(Field field) {
+        ArrayList<Figure> toReturnList = new ArrayList<>();
+
+        for (Figure figure : this) {
+            if(this.isWhite){
+                if(field.getFieldX()== 7){
+                    if(!figure.getAbbreviation().equals("N")){
+                        toReturnList.add(figure);
+                    }
+                }else if (field.getFieldX() == 8){
+                    if(!figure.getAbbreviation().equals("N") || !figure.getAbbreviation().equals("P")){
+                        toReturnList.add(figure);
+                    }
+                }
+            }
+            if(!this.isWhite) {
+                if(field.getFieldX() == 1){
+                    if(!figure.getAbbreviation().equals("N")){
+                        toReturnList.add(figure);
+                    }
+                }else if(field.getFieldX() == 0){
+                    if(!figure.getAbbreviation().equals("N") || !figure.getAbbreviation().equals("P")){
+                        toReturnList.add(figure);
+                    }
+                }
+            }
+        }
+
+        return toReturnList;
     }
 }
