@@ -4,6 +4,7 @@ import dev.shogi.board.Board;
 import dev.shogi.board.Field;
 import dev.shogi.board.Graveyard;
 import dev.shogi.figures.Figure;
+import dev.shogi.figures.basic.King;
 
 import javax.swing.*;
 
@@ -35,8 +36,8 @@ public class Controller {
     }
 
     public void createGraveyard() {
-        graveyardBlack = new Graveyard(board,board.getPnlGame().isWhite());
-        graveyardWhite = new Graveyard(board,!board.getPnlGame().isWhite());
+        graveyardBlack = new Graveyard(board.getPnlGame().isWhite());
+        graveyardWhite = new Graveyard(!board.getPnlGame().isWhite());
     }
 
     public void moveFigure(Figure figure, Field startField, Field targetField) {
@@ -60,7 +61,40 @@ public class Controller {
     }
 
     private boolean isTsume(boolean isWhite) {
-        //TODO: Logik des "im Schach" programmieren
+        //TODO: Logik des im Schach programmieren
+        boolean toReturn = false;
+        Field[][] arrayOfFields = board.getPnlGame().getFields();
+        Field whiteKingField = new Field();
+        Field blackKingField = new Field();
+        for (Field fieldsX[]: arrayOfFields) {
+            for (Field fieldsXY: fieldsX) {
+                if (fieldsXY.getFigure() != null) {
+                    if (fieldsXY.getFigure().getName().equals(King.class.getSimpleName())) {
+                        if (fieldsXY.getFigure().isWhite()) {
+                            whiteKingField = fieldsXY;
+                        } else {
+                            blackKingField = fieldsXY;
+                        }
+                    }
+                }
+            }
+        }
+
+        for (Field fieldsX[]: arrayOfFields) {
+            for (Field fieldsXY : fieldsX) {
+                if(fieldsXY.getFigure() != null) {
+                    if(fieldsXY.getFigure().isWhite()) {
+                        if (fieldsXY.getFigure().isOK(blackKingField)) {
+                         return true;
+                        }
+                    } else {
+                        if(fieldsXY.getFigure().isOK(whiteKingField)) {
+                         return true;
+                        }
+                    }
+                }
+            }
+        }
 
         return false;
     }
