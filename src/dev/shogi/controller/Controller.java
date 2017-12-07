@@ -36,8 +36,8 @@ public class Controller {
     }
 
     public void createGraveyard() {
-        graveyardBlack = new Graveyard(board.getPnlGame().isWhite());
-        graveyardWhite = new Graveyard(!board.getPnlGame().isWhite());
+        graveyardBlack = new Graveyard(board, board.getPnlGame().isWhite());
+        graveyardWhite = new Graveyard(board, !board.getPnlGame().isWhite());
     }
 
     public void moveFigure(Figure figure, Field startField, Field targetField) {
