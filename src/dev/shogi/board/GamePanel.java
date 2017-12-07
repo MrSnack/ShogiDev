@@ -194,6 +194,9 @@ public class GamePanel extends JPanel {
             } else if (figure.isOK(targetField)) {
                 tempTargetField = targetField;
                 startField = figure.getField();
+                if(targetField.getFigure() != null){
+                    Controller.getInstance().testForFigure(targetField);
+                }
                 targetField.setFigure(figure);
                 Controller.getInstance().moveFigure(figure, startField, tempTargetField);
                 if (!isReversed) {

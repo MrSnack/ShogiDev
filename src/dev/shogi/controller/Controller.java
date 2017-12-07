@@ -29,6 +29,7 @@ public class Controller {
 
     public Controller (){
         board = new Board();
+        this.createGraveyard();
     }
 
     public void createBoard() {
@@ -36,8 +37,8 @@ public class Controller {
     }
 
     public void createGraveyard() {
-        graveyardBlack = new Graveyard(board, board.getPnlGame().isWhite());
-        graveyardWhite = new Graveyard(board, !board.getPnlGame().isWhite());
+        graveyardBlack = new Graveyard(board,board.getPnlGame().isWhite());
+        graveyardWhite = new Graveyard(board,!board.getPnlGame().isWhite());
     }
 
     public void moveFigure(Figure figure, Field startField, Field targetField) {
@@ -99,4 +100,12 @@ public class Controller {
         return false;
     }
 
+    public void testForFigure(Field targetField) {
+            if(targetField.getFigure().isWhite()){
+                graveyardWhite.addFigure(targetField.getFigure());
+            }else{
+                graveyardBlack.addFigure(targetField.getFigure());
+            }
+
+    }
 }
