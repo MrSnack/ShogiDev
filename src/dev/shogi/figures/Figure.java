@@ -188,6 +188,8 @@ public abstract class Figure {
                         xPos += xStepDirection;
                         yPos += yStepDirection;
                     }
+                    xPos = xStartPos + xStepDirection;
+                    yPos = yStartPos + yStepDirection;
                     for (int column = 0; column < (Math.abs(yGoingFields) - 1); column++) {
                         if (fields[xPos][yPos].getFigure() != null) {
                             return false;
