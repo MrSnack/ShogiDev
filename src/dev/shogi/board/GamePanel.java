@@ -171,14 +171,14 @@ public class GamePanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Field field = null;
+            Field targetField = null;
             Field startField;
-            Field tempField;
+            Field tempTargetField;
 
             for (Field[] fieldsX : fields) {
                 for (Field fieldXY : fieldsX) {
                     if (e.getSource() == fieldXY) {
-                        field = fieldXY;
+                        targetField = fieldXY;
                         break;
                     }
                 }
@@ -186,18 +186,19 @@ public class GamePanel extends JPanel {
 
             int turnMemory = turn;
             if (isTurnStart) {
-                if ((figure = field.getFigure()) != null) {
+                if ((figure = targetField.getFigure()) != null) {
                     if (!figure.isWhite() && ((turn & TURNBLACK) != 0) || figure.isWhite() && ((turn & TURNWHITE) != 0)) {
-                        field.removeFigure(true);
+                        targetField.removeFigure(true);
                     }
                 }
-            } else if (figure.isOK(field)) {
-                tempField = field;
+            } else if (figure.isOK(targetField)) {
+                tempTargetField = targetField;
                 startField = figure.getField();
-                field.setFigure(figure);
-                Controller.getInstance().moveFigure(figure, startField, tempField);
+                targetField.setFigure(figure);
+                Controller.getInstance().moveFigure(figure, startField, tempTargetField);
                 if (!isReversed) {
-                    tempField.setFigure(figure);
+                    tempTargetField.setFigure(figure);
+                    board.getPnlMenu().changeActivePlayer(!figure.isWhite());
                 } else {
                     turn = turnMemory;
                     isReversed = false;

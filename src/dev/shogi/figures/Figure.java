@@ -104,6 +104,15 @@ public abstract class Figure {
     }
 
     /**
+     * Die Methode gibt deie abkürzung der Figur zurück
+     *
+     * @return Abkürzung der Figur
+     */
+    public String getAbbreviation() {
+        return abbreviation;
+    }
+
+    /**
      * Die Methode prüft drei grundlegene Fälle, wo keine Figur ziehen darf.
      * Diese drei grundelegenen Fälle sind:
      * - Zielfeld darf nicht Startfeld sein

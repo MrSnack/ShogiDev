@@ -82,4 +82,13 @@ public class Board extends JFrame {
     public GamePanel getPnlGame() {
         return pnlGame;
     }
+
+    /**
+     * Gett, um das MenuPanel und Methoden daraus zu bekommen
+     *
+     * @return das aktuelle MenuPanel
+     */
+    public MenuPanel getPnlMenu() {
+        return pnlMenu;
+    }
 }
