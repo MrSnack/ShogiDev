@@ -1,10 +1,12 @@
 package dev.shogi.controller;
 
+
 import dev.shogi.board.Board;
 import dev.shogi.board.Field;
 import dev.shogi.board.Graveyard;
 import dev.shogi.figures.Figure;
 import dev.shogi.figures.basic.King;
+import dev.shogi.figures.promoted.*;
 
 import javax.swing.*;
 
@@ -36,7 +38,7 @@ public class Controller {
         board.buildBoard();
     }
 
-    public void createGraveyard() {
+    private void createGraveyard() {
         graveyardBlack = new Graveyard(board,board.getPnlGame().isWhite());
         graveyardWhite = new Graveyard(board,!board.getPnlGame().isWhite());
     }
@@ -102,10 +104,42 @@ public class Controller {
 
     public void testForFigure(Field targetField) {
             if(targetField.getFigure().isWhite()){
-                graveyardWhite.addFigure(targetField.getFigure());
-            }else{
                 graveyardBlack.addFigure(targetField.getFigure());
+            }else{
+                graveyardWhite.addFigure(targetField.getFigure());
             }
+    }
+
+    public Figure promoteFigure(Figure figure){
+            Figure toReturn = null;
+
+        switch(figure.getAbbreviation()){
+            case("P"):
+                toReturn = new PromotedPawn(figure.getField(),"Promoted Pawn", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                break;
+            case("R"):
+                toReturn = new Dragon(figure.getField(),"Dragon", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                break;
+            case("B"):
+                toReturn = new Horse(figure.getField(),"Horse", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                break;
+            case("L"):
+                toReturn = new PromotedLance(figure.getField(),"Promoted Lance", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                break;
+            case("S"):
+                toReturn = new PromotedSilver(figure.getField(),"Promoted Silver", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                break;
+            case("N"):
+                toReturn = new PromotedKnight(figure.getField(),"Promoted Knight", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                break;
+            default:
+                break;
+        }
+        if(toReturn == null){
+            return figure;
+        }else{
+            return toReturn;
+        }
 
     }
 }
