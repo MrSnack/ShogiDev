@@ -153,6 +153,10 @@ public class GamePanel extends JPanel {
         isTurnStart = false;
     }
 
+    public void setTurnStart(boolean turnStart) {
+        isTurnStart = turnStart;
+    }
+
     public void saveTurnEnd(Figure figure) {
         turn = figure.isWhite() ? TURNBLACK : TURNWHITE;
         isTurnStart = true;
@@ -204,11 +208,13 @@ public class GamePanel extends JPanel {
                         "\ndie du auf das Feld setzen möchtest.";
                 JComboBox cbxFiguresOfGraveyard = Controller.getInstance().getGraveyardList(targetField, isWhite);
                 Object[] inputArray = new Object[]{message, cbxFiguresOfGraveyard};
-                int option = JOptionPane.showConfirmDialog(null, inputArray, "Friedhoffigur setzen", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-                if (option == JOptionPane.OK_OPTION) {
-                    Figure figure = (Figure) cbxFiguresOfGraveyard.getSelectedItem();
-                    if (figure != null) {
-                        targetField.setFigure(figure, true);
+                if (cbxFiguresOfGraveyard != null) {
+                    int option = JOptionPane.showConfirmDialog(null, inputArray, "Friedhoffigur setzen", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                    if (option == JOptionPane.OK_OPTION) {
+                        Figure figure = (Figure) cbxFiguresOfGraveyard.getSelectedItem();
+                        if (figure != null) {
+                            targetField.setFigure(figure, true);
+                        }
                     }
                 }
             } else {

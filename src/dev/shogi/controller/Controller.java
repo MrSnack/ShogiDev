@@ -42,26 +42,16 @@ public class Controller {
 
     public void moveFigure(Board board, Figure figure, Field startField, Field targetField) {
         targetField.setFigure(figure);
-
-        if (figure.isWhite()) {
-            //im Tsume? setz Figur zurück
-            if (this.isTsume(board.getPnlGame().isWhite(), figure)) {
-                startField.setFigure(figure);
-                targetField.removeFigure(true);
-                board.getPnlGame().setReversed(true);
-            }
-        } else if (!figure.isWhite()) {
-            //im Tsume? setz Figur zurück
-            if (this.isTsume(!board.getPnlGame().isWhite(), figure)) {
-                startField.setFigure(figure);
-                targetField.removeFigure(true);
-                board.getPnlGame().setReversed(true);
-            }
+        if (this.isTsume(board.getPnlGame().isWhite(), figure)) {
+            startField.setFigure(figure);
+            targetField.removeFigure(true);
+            board.getPnlGame().setReversed(true);
+            board.getPnlGame().setTurnStart(true);
         }
     }
 
     private boolean isTsume(boolean isWhite, Figure figureForFigures) {
-        //TODO: Logik des im Schach programmieren
+        //TODO: Fehlermeldung beheben, wenn man König bewegt.
         ArrayList<Figure> figures = figureForFigures.getField().getBoard().getPnlGame().getFigures();
 
         Figure king = null;
@@ -76,7 +66,7 @@ public class Controller {
             for (Figure figure : figures) {
                 if (figure.isWhite() != king.isWhite()) {
                     if (figure.isOK(king.getField())) {
-                        System.out.println("Der König steht im Schach!");
+                        JOptionPane.showMessageDialog(null, "Der " + (king.isWhite() ? "weisse " : "schwarze ") + "König ist im Tsume!", "Im Tsume", JOptionPane.INFORMATION_MESSAGE);
                         return true;
                     }
                 }
@@ -106,7 +96,11 @@ public class Controller {
             cbxGraveyard.addItem(figure);
         }
 
-        return cbxGraveyard;
+        if (graveyardArray.size() > 0) {
+            return cbxGraveyard;
+        } else {
+            return null;
+        }
     }
 
     public Figure promoteFigure(Figure figure) {
