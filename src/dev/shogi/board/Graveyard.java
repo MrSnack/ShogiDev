@@ -41,6 +41,7 @@ public class Graveyard extends ArrayList<Figure> {
                     break;
             }
         }else{
+            figure.setWhite(this.isWhite);
             this.add(figure);
         }
 
@@ -52,25 +53,25 @@ public class Graveyard extends ArrayList<Figure> {
 
     public ArrayList<Figure> getFigureList(Field field) {
         ArrayList<Figure> toReturnList = new ArrayList<>();
-
+        //TODO: Anhand des Feldes bei einem Bauern auf der Y-Achse schauen, dass dort nicht schon ein Bauer steht.
         for (Figure figure : this) {
             if(this.isWhite){
-                if(field.getFieldX()== 7){
+                if (field.getFieldX() != 7) {
                     if(!figure.getAbbreviation().equals("N")){
                         toReturnList.add(figure);
                     }
-                }else if (field.getFieldX() == 8){
+                } else if (field.getFieldX() != 8) {
                     if(!figure.getAbbreviation().equals("N") || !figure.getAbbreviation().equals("P")){
                         toReturnList.add(figure);
                     }
                 }
             }
             if(!this.isWhite) {
-                if(field.getFieldX() == 1){
+                if (field.getFieldX() != 1) {
                     if(!figure.getAbbreviation().equals("N")){
                         toReturnList.add(figure);
                     }
-                }else if(field.getFieldX() == 0){
+                } else if (field.getFieldX() != 0) {
                     if(!figure.getAbbreviation().equals("N") || !figure.getAbbreviation().equals("P")){
                         toReturnList.add(figure);
                     }

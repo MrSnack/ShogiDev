@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
@@ -33,7 +34,9 @@ public class GamePanel extends JPanel {
 
     private boolean isEuropeanIcon;
 
-    public GamePanel(int boardsize, Board board) {
+    private Field targetField = null;
+
+    GamePanel(int boardsize, Board board) {
         this.BOARDSIZE = boardsize;
         this.board = board;
         this.initComponents();
@@ -122,6 +125,18 @@ public class GamePanel extends JPanel {
         return fieldNames;
     }
 
+    public ArrayList<Figure> getFigures() {
+        ArrayList<Figure> figures = new ArrayList<>();
+        for (Field[] fieldsX : fields) {
+            for (Field fieldXY : fieldsX) {
+                if (fieldXY.getFigure() != null) {
+                    figures.add(fieldXY.getFigure());
+                }
+            }
+        }
+        return figures;
+    }
+
     public Field[][] getFields() {
         return fields;
     }
@@ -171,7 +186,7 @@ public class GamePanel extends JPanel {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            Field targetField = null;
+            isWhite = (turn & TURNBLACK) == 0;
             Field startField;
             Field tempTargetField;
 
@@ -183,32 +198,47 @@ public class GamePanel extends JPanel {
                     }
                 }
             }
-
-            int turnMemory = turn;
-            if (isTurnStart) {
-                if ((figure = targetField.getFigure()) != null) {
-                    if (!figure.isWhite() && ((turn & TURNBLACK) != 0) || figure.isWhite() && ((turn & TURNWHITE) != 0)) {
-                        targetField.removeFigure(true);
+            if (targetField.getFigure() == null && isTurnStart) {
+                //Klick auf leeres Feld -> Figur von Graveyard
+                String message = "Wähle eine Figur vom Friedhof aus der Liste aus," +
+                        "\ndie du auf das Feld setzen möchtest.";
+                JComboBox cbxFiguresOfGraveyard = Controller.getInstance().getGraveyardList(targetField, isWhite);
+                Object[] inputArray = new Object[]{message, cbxFiguresOfGraveyard};
+                int option = JOptionPane.showConfirmDialog(null, inputArray, "Friedhoffigur setzen", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (option == JOptionPane.OK_OPTION) {
+                    Figure figure = (Figure) cbxFiguresOfGraveyard.getSelectedItem();
+                    if (figure != null) {
+                        targetField.setFigure(figure, true);
                     }
                 }
-            } else if (figure.isOK(targetField)) {
-                tempTargetField = targetField;
-                startField = figure.getField();
-                if(targetField.getFigure() != null){
-                    Controller.getInstance().testForFigure(targetField);
-                }
-                targetField.setFigure(figure);
-                Controller.getInstance().moveFigure(figure, startField, tempTargetField);
-                if (!isReversed) {
-                    tempTargetField.setFigure(figure);
-                    board.getPnlMenu().changeActivePlayer(!figure.isWhite());
-                } else {
-                    turn = turnMemory;
-                    isReversed = false;
-                }
             } else {
-                figure.getField().setFigure(figure);
-                turn = turnMemory;
+                int turnMemory = turn;
+                if (isTurnStart) {
+                    //Hier ist das targetField das Startfeld, wo die Figur stand
+                    if ((figure = targetField.getFigure()) != null) {
+                        if (!figure.isWhite() && ((turn & TURNBLACK) != 0) || figure.isWhite() && ((turn & TURNWHITE) != 0)) {
+                            targetField.removeFigure(true);
+                        }
+                    }
+                } else if (figure.isOK(targetField)) {
+                    tempTargetField = targetField;
+                    startField = figure.getField();
+                    if (targetField.getFigure() != null) {
+                        Controller.getInstance().addFigureToGraveyard(targetField);
+                    }
+                    targetField.setFigure(figure);
+                    Controller.getInstance().moveFigure(board, figure, startField, tempTargetField);
+                    if (!isReversed) {
+                        tempTargetField.setFigure(figure);
+                        board.getPnlMenu().changeActivePlayer(!figure.isWhite());
+                    } else {
+                        turn = turnMemory;
+                        isReversed = false;
+                    }
+                } else {
+                    figure.getField().setFigure(figure);
+                    turn = turnMemory;
+                }
             }
 
         }

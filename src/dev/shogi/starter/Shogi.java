@@ -6,7 +6,6 @@ public class Shogi {
 
     public static void main(String[] args) {
         System.out.println("Startet!");
-        Controller controller = new Controller();
-        controller.createBoard();
+        Controller.getInstance();
     }
 }

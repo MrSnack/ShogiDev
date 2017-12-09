@@ -203,6 +203,11 @@ public abstract class Figure {
         return true;
     }
 
+    /**
+     * Methode zur Festlegung der einzelnen Spielstein-Bilder
+     *
+     * @return Pfad des Spielstein-Bildes als String
+     */
     public String getImageURL() {
         if (isEuropeanIcon) {
             return "resources/europeanIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
@@ -211,11 +216,40 @@ public abstract class Figure {
         }
     }
 
+    /**
+     * Die Methode gibt den Boolean zurück, der bestimmt, ob der europäische oder japanische Spielsteinsatz ausgewähllt ist.
+     *
+     * @return true, wenn der europäische Spielsteinsatz ausgewählt ist
+     */
     public boolean isEuropeanIcon() {
         return isEuropeanIcon;
     }
 
+    /**
+     * Methode zum Setzen des Spielsteinsatzes (europäisch oder japanisch)
+     *
+     * @param europeanIcon - true, wenn europäischer Spielsteinsatz ausgewählt wurde
+     */
     public void setEuropeanIcon(boolean europeanIcon) {
         this.isEuropeanIcon = europeanIcon;
+    }
+
+    /**
+     * Methode zum Setzen der Figurenfarbe
+     *
+     * @param isWhite - Boolean zur Festlegung der Spielsteinfarbe
+     */
+    public void setWhite(boolean isWhite) {
+        this.isWhite = isWhite;
+    }
+
+    /**
+     * Methode zur Wiedergabe des Figurennamens, wenn man die Figur als String möchte
+     *
+     * @return Name der Figur
+     */
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }
