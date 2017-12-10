@@ -51,7 +51,6 @@ public class Controller {
     }
 
     private boolean isTsume(boolean isWhite, Figure figureForFigures) {
-        //TODO: Fehlermeldung beheben, wenn man König bewegt.
         ArrayList<Figure> figures = figureForFigures.getField().getBoard().getPnlGame().getFigures();
 
         Figure king = null;
@@ -103,12 +102,36 @@ public class Controller {
         }
     }
 
-    public Figure promoteFigure(Figure figure) {
+    public boolean isPromotable(Field startField, Field targetField, Figure figure) {
+        boolean isPromotable;
+
+        if (!(isPromotable = this.switchField(startField.getFieldY(), figure))) {
+            isPromotable = this.switchField(targetField.getFieldY(), figure);
+        }
+        return isPromotable;
+    }
+
+    private boolean switchField(int fieldY, Figure figure) {
+        switch (fieldY) {
+            case 0:
+            case 1:
+            case 2:
+                return !figure.isWhite();
+            case 6:
+            case 7:
+            case 8:
+                return figure.isWhite();
+            default:
+                return false;
+        }
+    }
+
+    public Figure getPromotedFigure(Figure figure) {
         Figure toReturn = null;
 
         switch (figure.getAbbreviation()) {
             case ("P"):
-                toReturn = new PromotedPawn(figure.getField(), "Promoted Pawn", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                toReturn = new PromotedPawn(figure.getField(), "PromotedPawn", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
                 break;
             case ("R"):
                 toReturn = new Dragon(figure.getField(), "Dragon", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
@@ -117,13 +140,13 @@ public class Controller {
                 toReturn = new Horse(figure.getField(), "Horse", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
                 break;
             case ("L"):
-                toReturn = new PromotedLance(figure.getField(), "Promoted Lance", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                toReturn = new PromotedLance(figure.getField(), "PromotedLance", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
                 break;
             case ("S"):
-                toReturn = new PromotedSilver(figure.getField(), "Promoted Silver", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                toReturn = new PromotedSilver(figure.getField(), "PromotedSilver", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
                 break;
             case ("N"):
-                toReturn = new PromotedKnight(figure.getField(), "Promoted Knight", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
+                toReturn = new PromotedKnight(figure.getField(), "PromotedKnight", "+" + figure.getAbbreviation(), figure.isWhite(), figure.isEuropeanIcon());
                 break;
             default:
                 break;

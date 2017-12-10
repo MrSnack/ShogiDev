@@ -220,7 +220,7 @@ public class GamePanel extends JPanel {
             } else {
                 int turnMemory = turn;
                 if (isTurnStart) {
-                    //Hier ist das targetField das Startfeld, wo die Figur stand
+                    //Hier ist das Zielfeld das Startfeld, wo die Figur stand
                     if ((figure = targetField.getFigure()) != null) {
                         if (!figure.isWhite() && ((turn & TURNBLACK) != 0) || figure.isWhite() && ((turn & TURNWHITE) != 0)) {
                             targetField.removeFigure(true);
@@ -236,6 +236,17 @@ public class GamePanel extends JPanel {
                     Controller.getInstance().moveFigure(board, figure, startField, tempTargetField);
                     if (!isReversed) {
                         tempTargetField.setFigure(figure);
+                        //Befördern der Figur, wenn sie die Zone (letzten 3 Reihen) betritt, sich in der Zone bewegt oder die Zone verlässt
+                        if (!figure.getAbbreviation().contains("+")) {
+                            if (Controller.getInstance().isPromotable(startField, targetField, figure)) {
+                                int option = JOptionPane.showConfirmDialog(null, "Möchtest du den " + figure.getName() + " befördern?", "Figurbeförderung", JOptionPane.YES_NO_OPTION);
+                                if (option == JOptionPane.YES_OPTION) {
+                                    Figure promotedFigure = Controller.getInstance().getPromotedFigure(figure);
+                                    targetField.setFigure(promotedFigure);
+                                }
+
+                            }
+                        }
                         board.getPnlMenu().changeActivePlayer(!figure.isWhite());
                     } else {
                         turn = turnMemory;
