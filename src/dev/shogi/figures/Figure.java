@@ -194,14 +194,14 @@ public abstract class Figure {
                         if (fields[xPos][yPos].getFigure() != null) {
                             return false;
                         }
-                        if ((xPos += xStepDirection) > 8) {
+                        if ((xPos + xStepDirection) > 8) {
                             xPos = 8;
-                        } else if ((xPos += xStepDirection) < 0) {
+                        } else if ((xPos + xStepDirection) < 0) {
                             xPos = 0;
                         }
-                        if ((yPos += yStepDirection) > 8) {
+                        if ((yPos + yStepDirection) > 8) {
                             yPos = 8;
-                        } else if ((yPos += yStepDirection) < 0) {
+                        } else if ((yPos + yStepDirection) < 0) {
                             yPos = 0;
                         }
                     }
