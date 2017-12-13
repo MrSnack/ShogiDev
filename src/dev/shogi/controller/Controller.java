@@ -4,6 +4,7 @@ import dev.shogi.board.Board;
 import dev.shogi.board.Field;
 import dev.shogi.board.Graveyard;
 import dev.shogi.figures.Figure;
+import dev.shogi.figures.basic.GoldenGeneral;
 import dev.shogi.figures.promoted.*;
 
 import javax.swing.*;
@@ -103,6 +104,9 @@ public class Controller {
     }
 
     public boolean isPromotable(Field startField, Field targetField, Figure figure) {
+        if(figure.getName().equals(GoldenGeneral.class.getSimpleName())) {
+            return false;
+        }
         boolean isPromotable;
 
         if (!(isPromotable = this.switchField(startField.getFieldY(), figure))) {
