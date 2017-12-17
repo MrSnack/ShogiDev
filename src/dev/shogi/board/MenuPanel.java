@@ -7,15 +7,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class MenuPanel extends JPanel {
 
-    private final String whiteIconPath = "resources/defaultIcons/defaultWhiteIcon.png";
-    private final String blackIconPath = "resources/defaultIcons/defaultBlackIcon.png";
+    private final String whiteIconPath = "/defaultIcons/defaultWhiteIcon.png";
+    private final String blackIconPath = "/defaultIcons/defaultBlackIcon.png";
 
     private Board board;
-    private File icon;
+    private BufferedImage bufferedImage;
 
     private JLabel lblActivePlayer = new JLabel();
     private JLabel lblActiveGraveyard = new JLabel();
@@ -76,13 +75,12 @@ public class MenuPanel extends JPanel {
     }
 
     public void changeActivePlayer(boolean isWhite) {
-        if (isWhite) {
-            icon = new File(whiteIconPath);
-        } else {
-            icon = new File(blackIconPath);
-        }
         try {
-            BufferedImage bufferedImage = ImageIO.read(icon);
+            if (isWhite) {
+                bufferedImage = ImageIO.read(this.getClass().getResource(whiteIconPath));
+            } else {
+                bufferedImage = ImageIO.read(this.getClass().getResource(blackIconPath));
+            }
             if (isWhite) {
                 bufferedImage = ImageProcessing.rotate180(bufferedImage);
             }

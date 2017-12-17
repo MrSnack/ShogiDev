@@ -7,7 +7,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 public class Field extends JButton {
 
@@ -78,7 +77,7 @@ public class Field extends JButton {
         this.setFont(new Font("Dialog", Font.BOLD, 36));
         //this.setText(figure.getSymbol());
         try {
-            BufferedImage bufferedImage = ImageIO.read(new File(figure.getImageURL()));
+            BufferedImage bufferedImage = ImageIO.read(this.getClass().getResource(figure.getImageURL())/*new File(figure.getImageURL())*/);
             if (figure.isWhite()) {
                 bufferedImage = ImageProcessing.rotate180(bufferedImage);
             }

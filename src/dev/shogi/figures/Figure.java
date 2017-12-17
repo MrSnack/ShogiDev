@@ -218,9 +218,9 @@ public abstract class Figure {
      */
     public String getImageURL() {
         if (isEuropeanIcon) {
-            return "resources/europeanIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
+            return "/europeanIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
         } else {
-            return "resources/japaneseIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
+            return "/japaneseIcons/" + getClass().getSimpleName().toLowerCase() + ".png";
         }
     }
 
